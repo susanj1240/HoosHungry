@@ -1,0 +1,17 @@
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.checked {
+    color: orange;
+}
+
+/* https://www.w3schools.com/howto/howto_css_rounded_images.asp */
+img {
+    width: 100%;
+    border-radius: 2%;
+}

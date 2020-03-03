@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- profile css  -->
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <!-- google icon  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    <!-- home javascript -->
+    <script src="../js/home.js"></script>
+
+    <div class="part1">
+        <div class="d-flex flex-row">
+
+        <!-- Logo -->
+        <div class="p-2">
+            <h1 class="Logo">Hoos Hungry</h1>
+        </div>
+        
+
+        <div class="login ml-auto p-2">
+            <!-- login form -->
+            <div class="wrapper">
+                <form class="form-signin" name="loginForm" onsubmit = "return validate()">       
+                  <h4 class="form-signin-heading">Login</h4>
+
+                  <!-- email input -->
+                  <input id="email" type="text" class="form-control" name="email" placeholder="Email"  />
+
+                  <!-- password input -->
+                  <input id="password" type="password" class="form-control" name="password" placeholder="Password"/>      
+
+                  <div class="text-center"> 
+                    <button id="loginBtn" class="btn btn-primary" type="submit">Login</button>   
+                    </div>
+
+                  <p class="d-flex justify-content-center"><a href="">Sign Up</a></p>
+                </form>
+              </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="part2 container">
+       <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input id="userInput" onkeypress="return search(event)" type="text" class="form-control" placeholder="Search">
+      </div>
+
+    </div>
+
+    <div class="part3 container">
+        <!-- Photo Grid -->
+        <div class="row restaurants"> 
+            <div id="first elem" style="display:none;"></div>
+            <div class="column">
+                <div class="block" id="mod pizza">Pizza</div>
+            </div>
+            <div class="column">
+                <div class="block" id="milan"></div>
+            </div>
+            <div class="column">
+                <div class="block" id="doma"></div>
+            </div>
+            <div class="column">
+                <div class="block" id="roots"></div>
+        </div>
+    </div>
+    
+   
+
+</body>
+</html>

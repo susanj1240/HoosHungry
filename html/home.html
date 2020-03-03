@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- profile css  -->
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <!-- google icon  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- home javascript -->
+    <script src="../js/home.js"></script>
+
+
+    <div class="part1">
+        <div class="d-flex flex-row">
+
+        <!-- Logo -->
+        <div class="p-2">
+            <h1 class="Logo">Hoos Hungry</h1>
+        </div>
+        
+
+        <div class="login ml-auto p-2">
+            <!-- login form -->
+            <div class="wrapper">
+                <form class="form-signin" name="loginForm" onsubmit = "return validate()">       
+                  <h4 class="form-signin-heading">Login</h4>
+
+                  <!-- email input -->
+                  <input id="email" type="text" class="form-control" name="email" placeholder="Email"  />
+
+                  <!-- password input -->
+                  <input id="password" type="password" class="form-control" name="password" placeholder="Password"/>      
+
+                  <div class="text-center"> 
+                    <button id="loginBtn" class="btn btn-primary" type="submit">Login</button>   
+                    </div>
+
+                  <p class="d-flex justify-content-center"><a href="">Sign Up</a></p>
+                </form>
+              </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="part2 container">
+        <!-- Search form -->
+        <div class="form-group has-search">
+            <input type="text" class="form-control" placeholder="Search" onsubmit="return search()">
+          </div>
+
+    </div>
+
+    <div class="part3 container">
+        <!-- Photo Grid -->
+        <div class="row restaurants"> 
+            <div class="column">
+                <div class="block"></div>
+            </div>
+            <div class="column">
+                <div class="block"></div>
+            </div>
+            <div class="column">
+                <div class="block"></div>
+            </div>
+            <div class="column">
+                <div class="block"></div>
+        </div>
+    </div>
+    
+   
+
+</body>
+</html>

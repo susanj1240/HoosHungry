@@ -1,3 +1,5 @@
+// author: Susan Jang
+
 function showModal(){
     $('#myModal').modal('show')
 }

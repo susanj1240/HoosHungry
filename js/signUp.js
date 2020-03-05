@@ -1,3 +1,4 @@
+/* Author: Emily Lin */
 
 // Disable the submit button when the form is empty 
 var btn = document.getElementById("btn-submit");

@@ -7,7 +7,9 @@
 .block{
     width: 200px;
     height: 200px;
-    background-color: grey;
+    /* background-color: grey; */
+    background-size: cover;
+    /* background-size: 200px; */
     border-radius: 10px;
    
     

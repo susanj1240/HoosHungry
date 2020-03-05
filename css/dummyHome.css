@@ -1,3 +1,9 @@
+#profileBtn{
+    background-color: #eb9e34;
+    border-color: #eb9e34;
+    margin: 10px;
+}
+
 
 
 .part1{
@@ -36,12 +42,7 @@ a {
     margin-bottom: 15px;
 }
 
-#loginBtn{
-    width:50%;
-    text-align:center;
-    background-color: #eb9e34;
-    border-color: #eb9e34;
-}
+
 
 .block{
     width:250px;

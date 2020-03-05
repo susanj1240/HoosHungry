@@ -14,9 +14,28 @@ function validate(){
     if(password.value == ""){
         window.alert("Please enter your password.")
         return false;
-    }
+    } 
+    
 
 }
+
+/* success function
+    - redirects the user to dummyHome.html when successfully login
+    - dummy email: ab@virginia.edu
+    - dummy password: 12345
+ */
+function success(){
+    var email = document.forms["loginForm"]["email"]; 
+    var password = document.forms["loginForm"]["password"];
+
+    if(email.value == "ab@virginia.edu" && password.value == "12345"){
+        console.log("?");
+        window.location.href = "dummyHome.html";
+    } else{
+        window.alert("Username or password is incorrect");
+    }
+}
+
 
 /* Search Function
     - if the user types in keyword and press enter --> shows the filtered result

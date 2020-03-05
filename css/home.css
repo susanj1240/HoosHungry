@@ -1,8 +1,8 @@
-/* Author: Susan Jang */
+
 
 .part1{
     background-color:#f2f2f2;
-    width: 100%;
+    /* width: 100%; */
     height: 350px;
 }
 
@@ -16,6 +16,10 @@
     /* margin-bottom: 10px; */
 }
 
+.wrapper2{
+    display: none;
+    margin: 20px;
+}
 
 a {
     color: rgb(48, 48, 48);
@@ -90,6 +94,20 @@ ul {
     .column {
       flex: 100%;
       max-width: 80%;
+    }
+    
+  }
+
+  @media screen and (max-width: 400px) {
+    #login{
+        display: none;
+    }
+    .part1{
+        height:  200px;
+    }
+
+    .wrapper2{
+        display: block;
     }
     
   }

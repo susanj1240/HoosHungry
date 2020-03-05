@@ -1,4 +1,4 @@
-/* author: Susan Jang */
+
 
 /*Login Validation
     - if the entered email or password is empty --> alerts the user

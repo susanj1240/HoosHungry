@@ -22,13 +22,13 @@ function validate() {
 /* success function
     - redirects the user to dummyHome.html when successfully login
     - dummy email: ab@virginia.edu
-    - dummy password: 12345
+    - dummy password: 12345678
  */
 function success() {
     var email = document.forms["loginForm"]["email"];
     var password = document.forms["loginForm"]["password"];
 
-    if (email.value == "ab@virginia.edu" && password.value == "12345") {
+    if (email.value == "ab@virginia.edu" && password.value == "12345678") {
         console.log("?");
         window.location.href = "dummyHome.html";
     } else {
@@ -44,31 +44,8 @@ function success() {
 //hard coded the restaurant list for now
 var restaurants = ["mod pizza", "milan", "roots", "doma"];
 
-function search(e) {
-    if (e.keyCode == 13) {
-        var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById('userInput').value;
-        filter = input.toUpperCase();
-        ul = document.getElementById("myUL");
-        li = ul.getElementsByTagName('li');
 
-        // Loop through all list items, and hide those who don't match the search query
-        for (i = 0; i < li.length; i++) {
-            console.log(input);
-            // console.log(li[i].getAttribute('id'));
-            if (input == li[i].getAttribute('id')) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function myFunction() {
+function search() {
 
 
     var input, filter, ul, li, a, i, txtValue;

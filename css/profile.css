@@ -4,6 +4,11 @@
     overflow: hidden;
 }
 
+
+
+
+
+
 .block{
     width: 200px;
     height: 200px;
@@ -16,7 +21,8 @@
 }
 
 .block:hover{
-  background-color: rgb(102, 101, 101);
+  box-shadow: 0 0 30px  rgb(153, 153, 153);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .block p{
@@ -70,7 +76,7 @@
 
 
   #review{
-    margin-top: 50px;
+    margin-top: 70px;
   }
 
   #review h3{

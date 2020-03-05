@@ -10,9 +10,8 @@ function editUsername(){
         window.alert("Please enter username");
     } else{
         document.getElementById("username").innerHTML = input;
-        input = "";
         $('#myModal').modal('hide');
-
     }
+    document.getElementById("usernameInput").value ="";
     
 }

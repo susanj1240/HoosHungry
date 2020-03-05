@@ -43,6 +43,9 @@ a {
     border-color: #eb9e34;
 }
 
+ul {
+    list-style-type: none;
+}
 .block{
     width:250px;
     height: 200px;

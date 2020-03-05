@@ -3,19 +3,19 @@
 /*Login Validation
     - if the entered email or password is empty --> alerts the user
 */
-function validate(){
-    var email = document.forms["loginForm"]["email"]; 
+function validate() {
+    var email = document.forms["loginForm"]["email"];
     var password = document.forms["loginForm"]["password"];
 
-    if(email.value == ""){
-        window.alert("Please enter your Email."); 
+    if (email.value == "") {
+        window.alert("Please enter your Email.");
         return false;
-    } 
-    if(password.value == ""){
+    }
+    if (password.value == "") {
         window.alert("Please enter your password.")
         return false;
-    } 
-    
+    }
+
 
 }
 
@@ -24,14 +24,14 @@ function validate(){
     - dummy email: ab@virginia.edu
     - dummy password: 12345
  */
-function success(){
-    var email = document.forms["loginForm"]["email"]; 
+function success() {
+    var email = document.forms["loginForm"]["email"];
     var password = document.forms["loginForm"]["password"];
 
-    if(email.value == "ab@virginia.edu" && password.value == "12345"){
+    if (email.value == "ab@virginia.edu" && password.value == "12345") {
         console.log("?");
         window.location.href = "dummyHome.html";
-    } else{
+    } else {
         window.alert("Username or password is incorrect");
     }
 }
@@ -42,27 +42,64 @@ function success(){
  */
 
 //hard coded the restaurant list for now
-var restaurants = ["mod pizza", "milan", "roots","doma"];
+var restaurants = ["mod pizza", "milan", "roots", "doma"];
 
-function search(e){
+function search(e) {
     if (e.keyCode == 13) {
-        var userInput = document.getElementById("userInput").value;
-        userInput = userInput.toString().toLowerCase();
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('userInput').value;
+        filter = input.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName('li');
 
-        console.log(userInput);
-
-        for (var i = 0; i < restaurants.length; i++) {
-            if(restaurants[i] == userInput){
-                var show = document.getElementById(restaurants[i]);
-                show.style.display = "block";
-
-                $(show).insertAfter("first elem");
-
-            } else{
-                var hide = document.getElementById(restaurants[i]);
-                hide.style.display = "none";
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            console.log(input);
+            // console.log(li[i].getAttribute('id'));
+            if (input == li[i].getAttribute('id')) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
             }
-        }       
+        }
         return true;
+    } else {
+        return false;
     }
+}
+
+function myFunction() {
+
+
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('userInput').value;
+    filter = input.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName('li');
+
+if(input != ""){
+     // Loop through all list items, and hide those who don't match the search query
+     for (i = 0; i < li.length; i++) {
+        console.log(input);
+        // console.log(li[i].getAttribute('id'));
+        if (input == li[i].getAttribute('id')) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+    return true;
+} else{
+    for (i = 0; i < li.length; i++) {
+        // console.log(input);
+        // console.log(li[i].getAttribute('id'));
+       
+        li[i].style.display = "";
+    }
+    return true;
+
+}
+   
+
+
 }

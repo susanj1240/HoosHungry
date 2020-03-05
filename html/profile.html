@@ -28,15 +28,15 @@
 
 <body>
 
-    <div class="text-center">
+    <div class="text-center ">
         <!-- profile image -->
         <div class="container" id="profile">
             <img src="../img/susan.jpg" class="profileImg rounded-circle" alt="...">
             <!-- username -->
 
             <div class="container" style="text-align:center">
-                <p id="username">UserName</p>
-                <button type="button" class="btn btn-default" onclick="showModal()" data-toggle="modal" data-target="#exampleModal">
+                <p id="username" style="display: inline-block;">UserName</p>
+                <button style="display: inline-block;" type="button" class="btn btn-default" onclick="showModal()" data-toggle="modal" data-target="#exampleModal">
                         <i class="fa fa-edit"></i>
                     </button>
             </div>
@@ -68,7 +68,8 @@
 
     <!-- favorite restaurant list -->
     <div class="container" id="favorite">
-        <h3>Favorites</h3>
+        <h3 >Favorites <i class="fa fa-heart"></i></h3>
+        
 
         <div class="container">
             <!-- Photo Grid -->
@@ -115,7 +116,7 @@
 
         <!-- reviews -->
         <div class="container" id="review">
-            <h3>Your Reviews</h3>
+            <h3>Your Reviews <i class="fa fa-pencil"></i> </h3>
 
             <div class="reviewGroup">
                 <div class="row">

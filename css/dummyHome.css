@@ -12,6 +12,11 @@
     height: 350px;
 }
 
+
+ul {
+    list-style-type: none;
+}
+
 .Logo{
     padding-top: 50px;
     padding-left: 50px;

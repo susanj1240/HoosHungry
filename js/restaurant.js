@@ -1,4 +1,4 @@
-
+// authors: Emily Lin, Susan Jang 
 /********** STAR RATING *********/
 var numStars = 0; // the selected # of stars, changes w/ click
 

@@ -1,8 +1,8 @@
 <?php 
     $hostname = 'localhost:3306';
-    $dbname = 'webPLproject'; // ALTER THIS AS NEEDED
-    $username = 'aaa';
-    $password = 'keylimepie24';
+    $dbname = '' // CHANGE THIS
+    $username = '' // CHANGE THIS
+    $password = '' // CHANGE THIS
 
     $dsn = "mysql:host=$hostname;dbname=$dbname";
 

@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, height=device-height, initial-scale=1">
+        <meta name="author" content="Emily Lin (ezl9uu)">
+        <meta name="description" content="The sign up page for HoosHungry"> 
+
+        <title>Sign Up</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/sign-up-style.css" />
+
+    </head>
+
+    <body style="background-color: #ffc98f;">
+        <div class="sign-up-box">
+            <br><br>
+            <!-- Documentation: https://getbootstrap.com/docs/4.1/components/forms/ -->
+            <!-- TODO: replace "dummySignUpConfirm.html" with the home page -->
+            <form id="sign-up-fm" action="../php/sign-up.php" method="POST"">
+                <h1 style="font-weight: bold;">Sign Up</h1>
+                <br>
+                <!-- Email Address -->
+                <div class="form group">
+                    <input type="email" class="form-control" id="signUpEmail" name="signUpEmail" placeholder="Email" autofocus required />
+                    <div id="email-msg" class="feedback"></div>
+                </div>
+                    
+                <br><br>
+                    
+                <!-- Password -->
+                <div class="form group">
+                    <input type="password" class="form-control" id="signUpPassword" name="signUpPassword" placeholder="Password (at least 8 characters)" required />
+                    <div id="length-msg" class="feedback"></div>
+                </div>
+                    
+                <br><br>
+                    
+                <!-- Confirm Password -->
+                <div class="form group">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+                    <div id="pwd-msg" class="feedback"></div>
+                </div>
+
+                <br><br>
+
+                <!-- Submit Button -->
+                <!-- Documentation: https://getbootstrap.com/docs/4.1/components/buttons/ -->
+                <button  type="submit" id="btn-submit" class="btn btn-primary" value="Sign Up" style="width:50%; background-color: orange; border:none;" onclick="return submitForm()">Sign Up</button>
+            </form>
+        </div>
+
+        <script src="../js/signUp.js"></script>
+
+
+    </body>
+</html>
+

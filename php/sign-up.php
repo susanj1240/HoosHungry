@@ -1,4 +1,6 @@
 <?php 
+    //Author: Emily Lin
+    
     require("../html/sign-up.html");
     require("connect-db.php");
     

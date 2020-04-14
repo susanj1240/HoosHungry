@@ -1,8 +1,11 @@
 <?php 
-    $hostname = 'localhost:3306';
-    $dbname = '' // CHANGE THIS
-    $username = '' // CHANGE THIS
-    $password = '' // CHANGE THIS
+    //Author: Susan Jang, Emily Lin
+    //Connects with Xampp database
+
+    $hostname = 'localhost';
+    $dbname = 'sj7yj'; // CHANGE THIS
+    $username = 'sj7yj'; // CHANGE THIS
+    $password = 'hooshungry'; // CHANGE THIS
 
     $dsn = "mysql:host=$hostname;dbname=$dbname";
 

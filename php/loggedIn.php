@@ -27,7 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <meta name="author" content="Sooyun Jang (sj7yj)">
-    <meta name="description" content="The dummy home page for HoosHungry">
+    <meta name="description" content="The home page for HoosHungry">
     <title>Dummy Home Page</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -48,8 +48,7 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <!-- home javascript -->
-    <script src="../js/dummyHome.js"></script>
+   
 </head>
 
 <body>
@@ -122,6 +121,9 @@
         });
         });
         
+        function profile(){
+        window.location.href = "../php/profile.php";
+        }
     </script>
 
 

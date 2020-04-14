@@ -3,6 +3,10 @@
     require("../html/sign-up.html");
     require("connect-db.php");
     
+    //session
+    session_start();
+
+
     /*********** FORM VALIDATION **********/
 
     // Make sure fields are not empty 
@@ -40,16 +44,18 @@
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pwd = htmlspecialchars($_POST['signUpPassword']); 
+            $hash_pwd = password_hash($pwd, PASSWORD_BCRYPT); 
             $email = htmlspecialchars($_POST['signUpEmail']);
         }
 
         $query = "INSERT INTO loginInfo (email, pwdHash) VALUES (:email, :pwdHash)";
         $statement = $db->prepare($query);
         $statement->bindValue(':email', $email); 
-        $statement->bindValue(':pwdHash', $pwd);
+        $statement->bindValue(':pwdHash', $hash_pwd);
         $statement->execute();
         $statement->closeCursor();
 
+        $_SESSION['username'] = $email;
         header("Location: ../php/loggedIn.php");
         exit();
     }

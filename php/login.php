@@ -9,9 +9,10 @@
     //initialize session
     session_start();
 
-    
+    //if logged in--> go to loggedIn page
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        //
+        header("location:loggedIn.php");
+        die();
     }
 
     global $db;

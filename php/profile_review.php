@@ -10,6 +10,7 @@ $user = $_SESSION['username'];
 
 $query = "select * from reviewInfo where user= '$user' ";
 
+
 $statement = $db->prepare($query);
 
 echo "
@@ -21,13 +22,17 @@ echo "
 
 $statement->execute();
 
+
+
 $output ="";
 while($row = $statement->fetch(PDO::FETCH_ASSOC)){
     //get the image of restaurant
     $restaurant = $row["restaurant"];
+    
     $query2 = "select image from restaurants where name= '$restaurant' ";
     $statement2 = $db->prepare($query2);
     $statement2->execute();
+    
     $link = $statement2->fetch(PDO::FETCH_ASSOC);
 
     $output .= '
@@ -47,8 +52,6 @@ echo $output;
 echo " </div>
 </div>";
 
-$statement->closeCursor();
-$statement2->closeCursor();
 
 
 ?>

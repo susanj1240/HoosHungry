@@ -32,7 +32,6 @@
     $user_email = $_SESSION['username'];
 
     // Favorite button setting upon load
-
     
 
     // HTML 
@@ -41,6 +40,12 @@
     // Which restaurant is this?
     global $restaurant_name;
     $restaurant_name = 'milan';
+
+    //******************** */
+    //Susan's Edit
+    $test_rest = $_COOKIE['gfg'];
+
+    //*********************** */
 
     // Add HTML (add reviews from the database)
     function addReviewHTML() {

@@ -10,10 +10,10 @@
     session_start();
 
     //if logged in--> go to loggedIn page
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location:loggedIn.php");
-        die();
-    }
+    // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    //     header("location:loggedIn.php");
+    //     die();
+    // }
 
     global $db;
 
@@ -61,7 +61,8 @@
             if(count($results) == 1){
 
                 $_SESSION['username'] = $username;
-                header("location: ../php/loggedIn.php");
+                $_SESSION["loggedin"] = true;
+                // header("location: ../php/loggedIn.php");
                 
             }else{//if the username or password is incorrect
                 $username_err = "Username or Password is incorrect";  
@@ -69,7 +70,6 @@
 
         }
     }
-
 
 ?>
 
@@ -100,68 +100,71 @@
     <!-- ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-     <!-- home javascript -->
-     <script src="../js/home.js"></script>
 </head>
 
 <body>
+    <!-- Redriectiong the page for profile button -->
+    <script>
+        function goToProfile(){
+            window.location.href = "../php/profile.php";
+        }
+
+        //reference: https://www.geeksforgeeks.org/how-to-pass-javascript-variables-to-php/
+        // Creating a cookie after the document is ready 
+        $(document).ready(function () { 
+            createCookie("gfg", "GeeksforGeeks", "10"); 
+        }); 
+        
+        window.onclick = e => {
+            console.log(e.target.id);
+            
+            createCookie("gfg", e.target.id, "10"); 
+            // var clicked = e.target.id;
+        }
+
+        // Function to create the cookie 
+        function createCookie(name, value, days) { 
+            var expires; 
+            
+            if (days) { 
+                var date = new Date(); 
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); 
+                expires = "; expires=" + date.toGMTString(); 
+            } 
+            else { 
+                expires = ""; 
+            } 
+            
+            document.cookie = escape(name) + "=" +  
+                escape(value) + expires + "; path=/"; 
+        } 
 
 
-    <div class="part1">
+    </script>
+
+    <div class="part1" >
         <div class="d-flex flex-row">
 
             <!-- Logo -->
             <div class="p-2">
-                <h1 class="Logo">Hoos Hungry</h1>
+                <img class= "Logo" src="../img/Logo.png">
             </div>
 
-
-            <div class="ml-auto p-2" id="login">
-                <!-- login form -->
-                <div class="wrapper">
-                    <form class="form-signin" name="loginForm" method="post" action="<?php $_SERVER['PHP_SELF'] ?>" style="padding:15px;">
-                        <h4 class="form-signin-heading">Login</h4>
-
-                        <!-- email input -->
-                        <input style="margin-bottom:2px;" id="email" type="text" class="form-control" name="email" placeholder="Email" />
-                        <span style="color:red;font-size:12px;" ><?php echo $username_err; ?></span>
-
-                        <!-- password input -->
-                        <input style="margin-bottom:2px;" id="password" type="password" class="form-control" name="password" placeholder="Password" />
-                        <span style="color:red;font-size:12px;"><?php echo $password_err; ?></span>
-
-                        <div class="text-center" style="margin-top:10px">
-                            <input type="submit" id="loginBtn" name="submit" class="btn btn-primary" value="submit">
-                        </div>
-
-                        <p style ="font-size:15px;" class="d-flex justify-content-center"><a href="../php/sign-up.php">Sign Up</a></p>
-                    </form>
-                </div>
-            </div>
+            <!-- login form -->
+            <?php 
+            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                echo'<div class="profile ml-auto p-2">
+                <p id="greeting">Hello, ';
+                echo $_SESSION["username"];
+                echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
+            }else {
+                require("loginForm.php");
+            }
+            ?>
 
         </div>
     </div>
 
-    <!-- login form -->
-    <!-- <div class="wrapper2">
-        <form class="form-signin" name="loginForm" method="post" action = "../php/login.php" >
-         <form class="form-signin" name="loginForm" action = "../php/login.php" onSubmit="return validate()"> 
-  
-            <h4 class="form-signin-heading">Login</h4>
-
-             email input
-            <input id="email" type="text" class="form-control" name="username" placeholder="Email" />
-
-            password input 
-            <input id="password" type="password" class="form-control" name="password" placeholder="Password" />
-
-            <div class="text-center">
-                <input type="button" id="loginBtn" class="btn btn-primary" value="submit">
-            </div>
-
-            <p class="d-flex justify-content-center"><a href="sign-up.html">Sign Up</a></p>
-        </form>
-    </div> -->
 
     <div class="part2 container">
         <div class="form-group has-search">
@@ -173,7 +176,7 @@
     </div>
 
     <div class="part3 container">
-        <ul class="row restaurants" id="result"></ul>
+        <div class="restaurants" id="result"></div>
     </div>
 
 <script>
@@ -209,6 +212,7 @@
     });
     
 </script>
+
 
 </body>
 

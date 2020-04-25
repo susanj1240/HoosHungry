@@ -16,19 +16,18 @@ echo "
 <div class='container' id='favorite'>
     <h3 >Favorites <i class='fa fa-heart'></i></h3>
     <div class='container'>   
-        <div class='row restaurants'>";
+        <div class='list'>";
 
 $statement->execute();
 
 $output ="";
 while($row = $statement->fetch(PDO::FETCH_ASSOC)){
     $output .= '
-    <div class="column">
-        <a href='.$row["link"].' target="_blank">
+        <a  href='.$row["link"].' target="_blank">
             <div class="block"  style="background-image: url('.$row["image"].');">
             </div>
         </a>
-    </div>';
+    ';
 }
 
 echo $output;

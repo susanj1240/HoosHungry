@@ -18,8 +18,9 @@ if(isset($_POST["query"]))
 else
 { 
     $query = "
-    SELECT * FROM restaurant ORDER BY name
+    SELECT * FROM restaurants ORDER BY name
     ";
+    
 }
 
 $statement = $db->prepare($query);
@@ -27,13 +28,14 @@ $statement = $db->prepare($query);
 if($statement->execute()){
     while($row = $statement->fetch(PDO::FETCH_ASSOC))
     {
+        // <a class="indivRestaurant" href='.$row["link"].' target="_blank">
+
     $output .= '
-    <li class="column">
-        <a href='.$row["link"].' target="_blank">
-            <div class="block"  style="background-image: url('.$row["image"].');">
+        <a class="indivRestaurant" href='.$row["link"].' target="_blank">
+            <div class="block" id="'.$row["name"].'" style="border: 0;background-image: url('.$row["image"].');">
             </div>
         </a>
-    </li>';
+    ';
     }
     echo $output;
 } else{

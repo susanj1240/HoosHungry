@@ -2,6 +2,20 @@
 //Author: Susan Jang
 //Shows the reviews that the author wrote
 
+
+//Copied From Emily's code on restaurant.php
+//This is for formatting start review
+function formatStarsReview($numStars) {
+    $ret = '<span class="checked">★</span>';
+    for ($i = 1; $i < $numStars; $i++) {
+        $ret .= '<span class="checked">★</span>';
+    }
+    for ($j = 0; $j < (5 - $numStars); $j++) {
+        $ret .= '<span class="unchecked">★</span>';
+    }
+    return $ret;
+}
+
 require("connect-db.php");
 global $db;
 
@@ -40,11 +54,15 @@ while($row = $statement->fetch(PDO::FETCH_ASSOC)){
                         <div class="card" style="width: 18rem;margin-right: 20px;">
                             <img src="'.$link["image"].'" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <p class="card-text">Review 1</p>
+                                <p class="card-text">'.$row["restaurant"].'</p>
+                                <hr>
+                                '. formatStarsReview($row['numStars']) .'
+                                <p class"card-text" style="color:black">'.$row["userText"].'</p>
                             </div>
                         </div>
                     </a>
 ';
+   
 }
 
 echo $output;

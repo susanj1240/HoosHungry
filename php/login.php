@@ -9,15 +9,6 @@
     //initialize session
     session_start();
 
-if (count($_COOKIE) > 0) 
-    {
-        if(!empty($_COOKIE['username']))
-        {
-            $_SESSION['username']=$_COOKIE['username'];
-            $_SESSION["loggedin"] = true;
-        }
-    }
-
     //if logged in--> go to loggedIn page
     // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     //     header("location:loggedIn.php");

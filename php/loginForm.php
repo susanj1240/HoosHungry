@@ -21,7 +21,7 @@ Login Form on home page -->
                             <input type="submit" id="loginBtn" name="submit" class="btn btn-primary" value="submit">
                         </div>
 
-                        <p style ="font-size:15px;" class="d-flex justify-content-center"><a href="http://localhost:4200">Sign Up</a></p>
+                        <p style ="font-size:15px;" class="d-flex justify-content-center"><a href="../php/sign-up.php">Sign Up</a></p>
                     </form>
                 </div>
             </div>

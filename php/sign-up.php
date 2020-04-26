@@ -1,55 +1,15 @@
 <?php 
-    session_start();
-    // header('Access-Control-Allow-Origin: http://localhost:4200');
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding');
-    header('Access-Control-Max-Age: 1000');
-    header('Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PUT');
-
-    // retrieve data from the request
-    $postdata = file_get_contents("php://input");
-
-    // Process data
-
-    // Extract json format to PHP array
-    $request = json_decode($postdata);
-
-    global $data;
-    $data = [];
-    foreach ($request as $k => $v)
-    {
-        array_push($data, $v); // Reference: https://www.php.net/manual/en/function.array-push.php
-    }
-    $_SESSION['username'] = $data[0];
-
-    // require("../html/sign-up.html");
+    // Author: Emily Lin (ezl9uu)
+    require("../html/sign-up.html");
     require("connect-db.php");
+    
+    //session
+    session_start();
 
-    function addNewUser() {
-        global $data; 
-        require("connect-db.php");
-
-        $email = $data[0];
-
-        $pwd = $data[1];
-
-        $query = "INSERT INTO loginInfo (email, pwdHash) VALUES (:email, :pwdHash)";
-        $statement = $db->prepare($query);
-        $statement->bindValue(':email', $email); 
-        $statement->bindValue(':pwdHash', $pwd);
-        $statement->execute();
-        $statement->closeCursor();
-
-        // header("Location: ../php/loggedIn.php");
-        // echo '<script>window.location.href = "../php/loggedIn.php"</script>';
-        exit();
-    }
-    addNewUser();
 
     /*********** FORM VALIDATION **********/
 
     // Make sure fields are not empty 
-    /*
     if (!empty($_POST['signUpEmail']) && !empty($_POST['signUpPassword'] && !empty($_POST['confirmPassword']))) {
         // Validate email reference: https://www.w3schools.com/php/php_form_url_email.asp
         if (!filter_input(INPUT_POST, "signUpEmail", FILTER_VALIDATE_EMAIL)) {
@@ -68,7 +28,7 @@
         }
 
         /****** ADD NEW USER TO DATABASE *******/
-        /*
+
         else {
             try {
                 addNewUser();
@@ -78,9 +38,7 @@
             }
         }  
     }
-    */
 
-    /*
     function addNewUser() {
         require("connect-db.php");
 
@@ -101,7 +59,6 @@
         header("Location: ../php/loggedIn.php");
         exit();
     }
-    */
 
     /**** COOKIE ******/
     $emailcookie = '';

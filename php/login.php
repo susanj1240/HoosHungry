@@ -61,8 +61,14 @@
             if(count($results) == 1){
 
                 $_SESSION['username'] = $username;
-                $_SESSION["loggedin"] = true;
+                // $_SESSION["loggedin"] = true;
                 // header("location: ../php/loggedIn.php");
+
+                //create time for session
+                //reference: https://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes
+                $_SESSION['start'] = time(); // Taking now logged in time.
+                // Ending a session in 30 minutes from the starting time.
+                $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
                 
             }else{//if the username or password is incorrect
                 $username_err = "Username or Password is incorrect";  
@@ -152,13 +158,32 @@
 
             <!-- login form -->
             <?php 
-            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-                echo'<div class="profile ml-auto p-2">
-                <p id="greeting">Hello, ';
-                echo $_SESSION["username"];
-                echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
-            }else {
+
+            
+
+            //if not logged in show login form
+            if(!isset($_SESSION["username"])){
                 require("loginForm.php");
+                
+            }
+            //if username in session
+            else {
+                //get current time
+                $now = time(); 
+
+                //check if the session has expired
+                if ($now > $_SESSION['expire']) {
+                    session_destroy();
+                    require("loginForm.php");
+                } else {
+                    //if not expired show profule button and username
+                    echo'<div class="profile ml-auto p-2">
+                    <p id="greeting">Hello, ';
+                    echo $_SESSION["username"];
+                    echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
+                
+                }
+                
             }
             ?>
 

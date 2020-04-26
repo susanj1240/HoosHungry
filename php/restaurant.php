@@ -35,11 +35,13 @@
     
 
     // HTML 
-    require("../html/restaurant-page.html");
+    // require("../html/restaurant-page.html");
 
     // Which restaurant is this?
     global $restaurant_name;
-    $restaurant_name = 'milan';
+    // $restaurant_name = 'milan';
+    $restaurant_name = $_COOKIE['gfg'];
+
 
     //******************** */
     //Susan's Edit
@@ -47,10 +49,31 @@
 
     //*********************** */
 
+    //Susan's Add
+    // Loads the restaurant picture from 'restaurants' datavase
+    function getPicture(){
+        global $restaurant_name;
+        require('connect-db.php');
+        $query = "SELECT * FROM restaurants where name = '$restaurant_name' ";
+        
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $results = $statement->fetchAll();  
+        $statement->closeCursor();
+
+        foreach($results as $result){
+            $imgaeSrc = $result['image'];
+            return $imgaeSrc;
+        }
+    }
+
+
     // Add HTML (add reviews from the database)
     function addReviewHTML() {
+        global $restaurant_name;
+
         require('connect-db.php');
-        $query = "SELECT * FROM reviewInfo";
+        $query = "SELECT * FROM reviewInfo where restaurant = '$restaurant_name' ";
         $statement = $db->prepare($query);
         $statement->execute();
         $results = $statement->fetchAll();  
@@ -70,7 +93,7 @@
         }
         echo "</div>";
     }
-    addReviewHTML();
+    // addReviewHTML();
 
     function formatStarsReview($numStars) {
         $ret = '<span class="checked">★</span>';

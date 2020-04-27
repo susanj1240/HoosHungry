@@ -3,10 +3,6 @@
     require("connect-db.php");
 
     /**** COOKIE ******/
-    // cookies must be set before HTML appears
-    // reference: https://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php
-
-    /**** COOKIE ******/
     $msg = '';
     if (count($_COOKIE) > 0) 
     {
@@ -29,7 +25,12 @@
     // Which user is logged in?
     global $user_email;
     session_start();
-    $user_email = $_SESSION['username'];
+    $user_email = '';
+    if (isset($_SESSION['username'])) {
+        $user_email = $_SESSION['username'];
+    } else {
+        echo "<div class='alert alert-danger' style='text-align:center'>Warning: You must log in before writing a review.</div>";
+    }
 
     // Favorite button setting upon load
     
@@ -112,7 +113,12 @@
             if (isset($_POST['rating'])) {
                 if (isset($_POST['review-box'])) {
                     // $_POST['confirm-msg'] = "Thanks! Your review was submitted.";
-                    addReviewInfo();
+                    if ($user_email != '') {
+                        addReviewInfo();
+                    } else {
+                        echo "<div class='alert alert-danger' style='text-align:center'>Error: please log in before writing a review.</div>";
+                    }
+                    
                 } else {
                     echo "Please write a review.";
                 }

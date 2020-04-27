@@ -1,9 +1,11 @@
+-- Author: Susan Jang, Emily Lin
+
 -- phpMyAdmin SQL Dump
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2020 at 03:37 PM
+-- Generation Time: Apr 14, 2020 at 05:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.29
 
@@ -25,6 +27,10 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `favs`
+-- Purpose: Stores favorite restaurant when user clicks on favorite button
+-- Colums:
+  -- email: email of the user
+  -- restaurant: name of the restaurant that the user saved as favs
 --
 
 CREATE TABLE `favs` (
@@ -32,10 +38,25 @@ CREATE TABLE `favs` (
   `restaurant` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `favs`
+--
+
+INSERT INTO `favs` (`email`, `restaurant`) VALUES
+('a', 'doma'),
+('a', 'milan');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `favsRestaurant`
+-- Purpose: Cross product of favs and restaurant table. This table is used on the profile page
+-- Colums:
+  -- email: email of the user
+  -- restaurant: name of the restaurant that the user saved as favs
+  -- name: name of the restaurant that the user saved as favs
+  -- image: link to the image of the restaurant
+  -- link: link to the page of the restaurant
 --
 
 CREATE TABLE `favsRestaurant` (
@@ -58,6 +79,10 @@ INSERT INTO `favsRestaurant` (`email`, `restaurant`, `name`, `image`, `link`) VA
 
 --
 -- Table structure for table `loginInfo`
+-- Purpose: Stores email and pwdHash. This table is used for registration and loginInfo
+-- Columns:
+  -- email: email of the user
+  -- pwdHash: password of the user
 --
 
 CREATE TABLE `loginInfo` (
@@ -71,20 +96,17 @@ CREATE TABLE `loginInfo` (
 
 INSERT INTO `loginInfo` (`email`, `pwdHash`) VALUES
 ('a', 'a'),
-('a1@virginia.edu', '$2y$10$Ec0uNi.9h73/frSz1.FGXelt5vtpGlkR9kPRFruGRXt9xhw7z8naC'),
-('a2@virginia.edu', '$2y$10$kUmSKAJeod45E6ChMHkeOelvuWX9c3ZWRoudbakMkFadH/kCYOI0.'),
-('m@gmail.com', '12345678'),
-('sj7yj@virginia.edu', '$2y$10$I5erWK.0c.DB/Hq6q2owNuF5224xPAZhee87HR58hAz/belw5lA8C'),
-('t1@virginia.edu', '$2y$10$XRxeFJ.AeD1cjAfkOhdtmOofxJtw7ZXKkTHblXOB5uhMwfLAFlA6e'),
-('t2@virginia.edu', '$2y$10$m3gP.2KOjdjMgCp0McPrVu2j81oo6RgcuqCl8/y0LF10UzdewAnwe'),
-('t3@virginia.edu', '$2y$10$ZdnKUChDcf/ZqdgLvqXAde.u/wPgwExOw14nPUxErWkO0.OEPgOUe'),
-('t4@virginia.edu', '11111111');
+('sj7yj@virginia.edu', '$2y$10$I5erWK.0c.DB/Hq6q2owNuF5224xPAZhee87HR58hAz/belw5lA8C');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `restaurants`
---
+-- Purpose: Stores information about each restaurants(name, link to image, link to its page)
+-- Columns:
+  -- name: name of the restaurants
+  -- image: link to the image of the restaurants
+  -- link: link to the page of the restaurants
 
 CREATE TABLE `restaurants` (
   `name` varchar(255) NOT NULL,
@@ -97,16 +119,22 @@ CREATE TABLE `restaurants` (
 --
 
 INSERT INTO `restaurants` (`name`, `image`, `link`) VALUES
-('Milan', '../img/milan.jpg', '../php/restaurant-page.php'),
-('Doma', '../img/Doma.jpeg', '../php/restaurant-page.php'),
-('Roots', '../img/roots.png', '../php/restaurant-page.php'),
-('Mod Pizza', '../img/modpizza.gif', '../php/restaurant-page.php');
+('doma', '../img/Doma.jpeg', '../php/restaurant-page.php'),
+('milan', '../img/milan.jpg', '../php/restaurant-page.php'),
+('mod pizza', '../img/modpizza.gif', '../php/restaurant-page.php'),
+('roots', 'roots.png', '../php/restaurant-page.php');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `reviewInfo`
---
+-- Purpose: Stores information about individual reviews submitted on restaurant page
+-- Columns:
+  -- reviewID: ID of the review - auto increments
+  -- userText: what the user types in for review
+  -- numStarts: number of stars given by user
+  -- user: email of the user
+  -- restaurant: name of the restaurant that the user gave review
 
 CREATE TABLE `reviewInfo` (
   `reviewID` int(11) NOT NULL,
@@ -121,40 +149,9 @@ CREATE TABLE `reviewInfo` (
 --
 
 INSERT INTO `reviewInfo` (`reviewID`, `userText`, `numStars`, `user`, `restaurant`) VALUES
-(1, 'good', 4, 'a', 'milan'),
-(2, 'hello', 4, 't1@virginia.edu', 'milan'),
-(3, 'hi', 4, 't4@virginia.edu', 'milan'),
-(4, 'nice', 5, 't4@virginia.edu', 'milan'),
-(5, 'yesss', 4, 't4@virginia.edu', 'milan'),
-(6, 'yes', 4, 'a', 'milan'),
-(7, 'good', 4, 'a', 'milan'),
-(8, 'review for doma', 3, 'a', 'doma'),
-(9, 'nice', 4, 'a', 'doma'),
-(10, 'nice', 2, 'a', 'doma'),
-(11, 'pizza was great', 5, 'a', 'Mod Pizza'),
-(12, 'submit', 4, 'a', 'Mod Pizza');
+(1, 'good', 4, 'a', 'milan');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `username` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`username`, `password`) VALUES
-('sj7yj', '123456');
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `loginInfo`
@@ -176,7 +173,7 @@ ALTER TABLE `reviewInfo`
 -- AUTO_INCREMENT for table `reviewInfo`
 --
 ALTER TABLE `reviewInfo`
-  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

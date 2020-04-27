@@ -1,0 +1,70 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, height=device-height, initial-scale=1">
+        <meta name="author" content="Emily Lin (ezl9uu)">
+        <meta name="description" content="The sign up page for HoosHungry"> 
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="sign-up-box"><br><br>
+            <form #signUpForm="ngForm" id="sign-up-fm" (ngSubmit)="onSubmit(signUpForm.value)" action="../php/sign-up.php" method="POST">
+                <!-- Reference: https://getbootstrap.com/docs/4.1/components/forms/ -->
+                <!-- Reference: https://angular.io/guide/forms-overview  -->
+                <h1 [ngStyle]="{'font-weight':'bold'}">{{signup}}</h1><br> <!-- Reference: https://angular.io/api/common/NgStyle -->
+                <div class="form group">
+                    <input type="email" class="form-control" id="signUpEmail" name="signUpEmail" placeholder="Email" autofocus required [(ngModel)]="model.signUpEmail" #signUpEmail="ngModel" />
+                    <div *ngIf="signUpEmail.invalid && (signUpEmail.dirty || signUpEmail.touched)" class="alert alert-danger">
+                        <div *ngIf="signUpEmail.errors.required">Email is required.</div>
+                    </div>
+                    <!-- <div [hidden]="signUpEmail.valid || signUpEmail.pristine" class="alert alert-danger"> Email is required </div> -->
+                    <div id="email-msg" class="feedback"></div>
+                </div><br><br>
+                    
+                <div class="form group">
+                    <input type="password" class="form-control" id="signUpPassword" name="signUpPassword" placeholder="Password (at least 8 characters)" required minlength="8" [(ngModel)]="model.signUpPassword" #signUpPassword="ngModel" />
+                    <div *ngIf="signUpPassword.invalid && (signUpPassword.dirty || signUpPassword.touched)" class="alert alert-danger">
+                        <div [ngSwitch]="signUpPassword.errors.required"> <!-- Reference: https://angular.io/api/common/NgSwitch -->
+                            <p *ngSwitchCase="true">Password is required.</p>
+                            <p *ngSwitchCase="false"></p>
+                        </div>
+                        <div *ngIf="signUpPassword.errors.minlength">Password must be at least 8 characters long.</div>
+                    </div>
+                    <!-- <div [hidden]="signUpPassword.valid || signUpPassword.pristine" class="alert alert-danger"> Password is required </div> -->
+                    <div id="length-msg" class="feedback"></div>
+                </div><br><br>
+
+                <!--
+                <div class="form-group">
+                    <small><label for="showPassword">Show Password?</label></small>
+                    <select class="form-control" id="showPassword" required >
+                      <option *ngFor="let pwdMsg of showPwd" [value]="pwdMsg">{{pwdMsg}}</option>
+                    </select>
+                </div>
+                -->
+                    
+                <div class="form group">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" />
+                    <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+                        <div *ngIf="confirmPassword.errors.required">Confirm password is required.</div>
+                    </div>
+                    <!-- <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger"> Confirm password is required </div>-->
+                    <div id="pwd-msg" class="feedback"></div>
+                </div><br><br>
+
+                <button type="submit" id="btn-submit" [ngClass]="'btn btn-primary'" value="Sign Up" style="width:50%; background-color: orange; border:none;" [disabled]="!signUpForm.form.valid" >Sign Up</button>
+                <!-- Reference: https://angular.io/api/common/NgClass-->
+                <!-- <button type="submit" id="btn-submit" class="btn btn-primary" value="Sign Up" style="width:50%; background-color: orange; border:none;" [disabled]="!signUpForm.form.valid" >Sign Up</button>-->
+                <!-- onclick="return submitForm()"-->
+                <!-- signUpForm.reset()-->
+                <!-- (click)="newUser();"  -->
+            </form>
+        </div>
+
+        <script src="../js/signUp.js"></script>
+
+    </body>
+</html>

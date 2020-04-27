@@ -61,14 +61,8 @@
             if(count($results) == 1){
 
                 $_SESSION['username'] = $username;
-                // $_SESSION["loggedin"] = true;
+                $_SESSION["loggedin"] = true;
                 // header("location: ../php/loggedIn.php");
-
-                //create time for session
-                //reference: https://stackoverflow.com/questions/520237/how-do-i-expire-a-php-session-after-30-minutes
-                $_SESSION['start'] = time(); // Taking now logged in time.
-                // Ending a session in 30 minutes from the starting time.
-                $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
                 
             }else{//if the username or password is incorrect
                 $username_err = "Username or Password is incorrect";  
@@ -118,7 +112,7 @@
         //reference: https://www.geeksforgeeks.org/how-to-pass-javascript-variables-to-php/
         // Creating a cookie after the document is ready 
         $(document).ready(function () { 
-            createCookie("gfg", "GeeksforGeeks", "10"); 
+            createCookie("gfg", "", "10"); 
         }); 
         
         window.onclick = e => {
@@ -158,85 +152,50 @@
 
             <!-- login form -->
             <?php 
-
-            
-
-            //if not logged in show login form
-            if(!isset($_SESSION["username"])){
-                require("loginForm.php");
-                
-            }
-            //if username in session
-            else {
-                //get current time
-                $now = time(); 
-
-                //check if the session has expired
-                if ($now > $_SESSION['expire']) {
-                    session_destroy();
-                    require("loginForm.php");
-                } else {
-                    //if not expired show profule button and username
-                    echo'<div class="profile ml-auto p-2">
-                    <p id="greeting">Hello, ';
-                    echo $_SESSION["username"];
-                    echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
-                
+            if (count($_COOKIE) > 0) {
+                if (!empty($_COOKIE['username'])) {
+                    $_SESSION['username'] = $_COOKIE['username'];
+                    // $_SESSION["loggedin"] = true;
                 }
-                
             }
+            if(!isset($_SESSION["username"]) ){
+                require("loginForm.php");
+            } else{
+                echo'<div class="profile ml-auto p-2">
+                <p id="greeting">Hello, ';
+                echo $_SESSION["username"];
+                echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
+            }
+
+            // if(isset($_SESSION["username"]) ){
+            //     echo'<div class="profile ml-auto p-2">
+            //     <p id="greeting">Hello, ';
+            //     echo $_SESSION["username"];
+            //     echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
+            // }else {
+            //     require("loginForm.php");
+            // }
             ?>
 
         </div>
     </div>
 
+    <!-- Ajax for Extra credit -->
+    <script src="../js/search.js"></script>
 
     <div class="part2 container">
         <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
-            <input id="userInput" name="userInput" type="text" class="form-control" placeholder="Type in your restaurant">
+            <input onkeyup="search(this.value)" id="userInput" name="userInput" type="text" class="form-control" placeholder="Type in your restaurant">
 
         </div>
 
     </div>
 
+    
     <div class="part3 container">
         <div class="restaurants" id="result"></div>
     </div>
-
-<script>
-    //reference: https://www.webslesson.info/2016/03/ajax-live-data-search-using-jquery-php-mysql.html
-    $(document).ready(function(){
-
-    load_data();
-
-    function load_data(query)
-    {
-    $.ajax({
-    url:"../php/fetch.php",
-    method:"POST",
-    data:{query:query},
-    success:function(data)
-    {
-    $('#result').html(data);
-    }
-    });
-    }
-    $('#userInput').keyup(function(){
-        console.log("typiing...");
-    var search = $(this).val();
-    if(search != '')
-    {
-    load_data(search);
-    }
-    else
-    {
-    load_data();
-    }
-    });
-    });
-    
-</script>
 
 
 </body>

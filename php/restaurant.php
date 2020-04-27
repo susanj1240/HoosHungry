@@ -29,8 +29,14 @@
     // Which user is logged in?
     global $user_email;
     session_start();
-    $user_email = $_SESSION['username'];
+    $user_email = '';
 
+     /********* EMILY'S EDIT ***********/ 
+     if (isset($_SESSION['username'])) {
+        $user_email = $_SESSION['username'];
+    } else {
+        echo "<div class='alert alert-danger' style='text-align:center'>Warning: You must log in before writing a review.</div>";
+    }
     // Favorite button setting upon load
     
 
@@ -135,7 +141,13 @@
             if (isset($_POST['rating'])) {
                 if (isset($_POST['review-box'])) {
                     // $_POST['confirm-msg'] = "Thanks! Your review was submitted.";
-                    addReviewInfo();
+                    if ($user_email != '') {
+                        addReviewInfo();
+                        /*********** EMILY'S EDIT ***********/
+                    } else {
+                        echo "<div class='alert alert-danger' style='text-align:center'>Error: please log in before writing a review.</div>";
+                    }
+                    /********** END OF EMIlY'S EDIT ************/
                 } else {
                     echo "Please write a review.";
                 }

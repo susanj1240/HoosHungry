@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content = "width=device-width, height=device-height, initial-scale=1">
+        <meta name="author" content="Emily Lin (ezl9uu)">
+        <meta name="description" content="The restaurant page for HoosHungry"> 
+        <title>Milan Indian Restaurant</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/restaurant-style.css" />
+    </head>
+
+    <body>
+        <!-- Added by Susan -->
+        <!-- This button sends the user back home -->
+        <script>
+            function goBackHome(){
+                window.location.href = "../php/login.php";
+            }
+        </script>
+        <button id="homeBtn"class="btn btn-primary" onclick="goBackHome();">Home</button>
+
+
+        <div class = "container" id="container1">
+            <div class="row" id="row1">
+                <div class="col-md-6">
+                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/08/f2/c7/e5/milan-indian-cuisine.jpg" />
+                </div>
+                <div class="col-md-6" id="col2">
+                    <!-- <h1>Milan Indian Restaurant</h1> -->
+                    <h1>Restaurant</h1>
+                    <!-- Star Rating -->
+                    <div class="ratingReviewTop" id="avgResRating">
+                        <!-- total width = 105 px -->
+                        <span>★★★★★</span>
+                    </div>
+                    <div class="ratingReviewBottom"><span>★★★★★</span></div>
+                    <br><br>
+
+                    <form name="fav" id="fav" method="POST" action = "../php/restaurant.php?updateFav=yes">
+                        <div>
+                            <label class="btn btn-light" id="heartLabel" style="float:right;"> <!-- ref for button: https://getbootstrap.com/docs/4.0/components/buttons/-->
+                                
+                            <input type="checkbox" id="heartCheck" name="heart" style="opacity: 0; position: absolute;" onclick="fave();" onchange="document.getElementById('fav').submit();" > ♡ Favorite <!-- unicode symbol for heart: https://www.w3schools.com/charsets/ref_utf_symbols.asp -->
+                            <!-- checkbox positioning ref: https://stackoverflow.com/questions/17979781/how-can-i-hide-a-checkbox-in-html -->
+                            <!-- onchange ref: https://stackoverflow.com/questions/33393852/is-it-possible-to-submit-a-checkbox-form-without-submit-button-in-php -->
+                            </label>
+                        </div>
+                    </form>
+                    <p style='color: red; display: <?php updateFav(); ?>' >Favorites has been updated.</p> 
+                    <p>Here is some information about the restaurant </p>
+                </div>
+            </div>
+
+            <div>
+                    <h2>Your Review</h2>
+                    <br>
+                    <p><i>Click on a star to leave a rating. 1 = lowest, 5 = highest.</i></p> 
+                    <!-- https://stackoverflow.com/questions/8118266/integrating-css-star-rating-into-an-html-form -->
+                    <form id="review-form" action="../php/restaurant.php" method="POST">
+                        <div class="ratingUser">
+                            <span><input type="radio" name="rating" id="str1" class="unchecked" value="1" onclick="selectStar(this.id)"><label for="str1" id="str1-label">★</label></span>
+                            <span><input type="radio" name="rating" id="str2" class="unchecked" value="2" onclick="selectStar(this.id)"><label for="str2" id="str2-label">★</label></span>
+                            <span><input type="radio" name="rating" id="str3" class="unchecked" value="3" onclick="selectStar(this.id)"><label for="str3" id="str3-label">★</label></span>
+                            <span><input type="radio" name="rating" id="str4" class="unchecked" value="4" onclick="selectStar(this.id)"><label for="str4" id="str4-label">★</label></span>
+                            <span><input type="radio" name="rating" id="str5" class="unchecked" value="5" onclick="selectStar(this.id)"><label for="str5" id="str5-label">★</label></span>
+                        </div>
+                        
+                        <!-- Star rating error message -->
+                        <div id="star-msg" class="feedback"></div>
+                        <br><br>
+
+                        <!-- Reference: https://getbootstrap.com/docs/4.1/components/forms/ -->
+                        <!-- TEXT BOX/FORM FOR REVIEW -->
+                        <textarea class="form-control" name="review-box" id="review" rows="10" cols="100" placeholder="Write your review here"></textarea>
+                        <br>
+                        <!-- Text box error message -->
+                        <div id="review-msg" class="feedback" value=<?php if (isset($_POST['confirm-msg'])) echo $_POST['confirm-msg'] ;?>></div>
+                        <!-- Submit button -->
+                        <button type="submit" name="reviewSubmit" class="btn btn-primary" value="Submit" style="float: right;" onclick="return validateReview()">Submit</button>
+                    </form>
+            </div>
+        </div>
+
+    <script src="../js/restaurant.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,45 @@
+/* author: Emily Lin */ 
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 110%;
+    font-style: bold;
+}
+
+.feedback {
+    color: red;
+    font-style: italic;
+    font-size: 90%;
+}
+
+/* Resources used: 
+Google HTML color picker
+https://www.youtube.com/watch?v=lacpTQuE9u8
+*/
+.sign-up-box {
+    box-shadow: 0 0 5px 0 #eba205;
+    background: #ffffff;
+    padding: 20px;
+    margin: 6% auto 0;
+    text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .sign-up-box {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .sign-up-box {
+        width: 30%;
+    }
+}

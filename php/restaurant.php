@@ -26,11 +26,14 @@
     global $user_email;
     session_start();
     $user_email = '';
+
+    /********* EMILY'S EDIT ***********/ 
     if (isset($_SESSION['username'])) {
         $user_email = $_SESSION['username'];
     } else {
         echo "<div class='alert alert-danger' style='text-align:center'>Warning: You must log in before writing a review.</div>";
     }
+    /********* END OF EMILY'S EDIT ***********/ 
 
     // Favorite button setting upon load
     
@@ -115,9 +118,11 @@
                     // $_POST['confirm-msg'] = "Thanks! Your review was submitted.";
                     if ($user_email != '') {
                         addReviewInfo();
+                        /*********** EMILY'S EDIT ***********/
                     } else {
                         echo "<div class='alert alert-danger' style='text-align:center'>Error: please log in before writing a review.</div>";
                     }
+                    /********** END OF EMIlY'S EDIT ************/
                     
                 } else {
                     echo "Please write a review.";

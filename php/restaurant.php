@@ -3,6 +3,10 @@
     require("connect-db.php");
 
     /**** COOKIE ******/
+    // cookies must be set before HTML appears
+    // reference: https://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php
+
+    /**** COOKIE ******/
     $msg = '';
     if (count($_COOKIE) > 0) 
     {
@@ -26,21 +30,24 @@
     global $user_email;
     session_start();
     $user_email = '';
-    if (isset($_SESSION['username'])) {
+
+     /********* EMILY'S EDIT ***********/ 
+     if (isset($_SESSION['username'])) {
         $user_email = $_SESSION['username'];
     } else {
         echo "<div class='alert alert-danger' style='text-align:center'>Warning: You must log in before writing a review.</div>";
     }
-
     // Favorite button setting upon load
     
 
     // HTML 
-    require("../html/restaurant-page.html");
+    // require("../html/restaurant-page.html");
 
     // Which restaurant is this?
     global $restaurant_name;
-    $restaurant_name = 'milan';
+    // $restaurant_name = 'milan';
+    $restaurant_name = $_COOKIE['gfg'];
+
 
     //******************** */
     //Susan's Edit
@@ -48,10 +55,31 @@
 
     //*********************** */
 
+    //Susan's Add
+    // Loads the restaurant picture from 'restaurants' datavase
+    function getPicture(){
+        global $restaurant_name;
+        require('connect-db.php');
+        $query = "SELECT * FROM restaurants where name = '$restaurant_name' ";
+        
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $results = $statement->fetchAll();  
+        $statement->closeCursor();
+
+        foreach($results as $result){
+            $imgaeSrc = $result['image'];
+            return $imgaeSrc;
+        }
+    }
+
+
     // Add HTML (add reviews from the database)
     function addReviewHTML() {
+        global $restaurant_name;
+
         require('connect-db.php');
-        $query = "SELECT * FROM reviewInfo";
+        $query = "SELECT * FROM reviewInfo where restaurant = '$restaurant_name' ";
         $statement = $db->prepare($query);
         $statement->execute();
         $results = $statement->fetchAll();  
@@ -71,7 +99,7 @@
         }
         echo "</div>";
     }
-    addReviewHTML();
+    // addReviewHTML();
 
     function formatStarsReview($numStars) {
         $ret = '<span class="checked">★</span>';
@@ -115,10 +143,11 @@
                     // $_POST['confirm-msg'] = "Thanks! Your review was submitted.";
                     if ($user_email != '') {
                         addReviewInfo();
+                        /*********** EMILY'S EDIT ***********/
                     } else {
                         echo "<div class='alert alert-danger' style='text-align:center'>Error: please log in before writing a review.</div>";
                     }
-                    
+                    /********** END OF EMIlY'S EDIT ************/
                 } else {
                     echo "Please write a review.";
                 }

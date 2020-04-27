@@ -112,7 +112,7 @@
         //reference: https://www.geeksforgeeks.org/how-to-pass-javascript-variables-to-php/
         // Creating a cookie after the document is ready 
         $(document).ready(function () { 
-            createCookie("gfg", "GeeksforGeeks", "10"); 
+            createCookie("gfg", "", "10"); 
         }); 
         
         window.onclick = e => {
@@ -155,17 +155,26 @@
             if (count($_COOKIE) > 0) {
                 if (!empty($_COOKIE['username'])) {
                     $_SESSION['username'] = $_COOKIE['username'];
-                    $_SESSION["loggedin"] = true;
+                    // $_SESSION["loggedin"] = true;
                 }
             }
-            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+            if(!isset($_SESSION["username"]) ){
+                require("loginForm.php");
+            } else{
                 echo'<div class="profile ml-auto p-2">
                 <p id="greeting">Hello, ';
                 echo $_SESSION["username"];
                 echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
-            }else {
-                require("loginForm.php");
             }
+
+            // if(isset($_SESSION["username"]) ){
+            //     echo'<div class="profile ml-auto p-2">
+            //     <p id="greeting">Hello, ';
+            //     echo $_SESSION["username"];
+            //     echo'<button id="profileBtn" class="btn btn-primary" onclick="goToProfile()";">Profile</button> </p></div>';
+            // }else {
+            //     require("loginForm.php");
+            // }
             ?>
 
         </div>
@@ -183,6 +192,7 @@
 
     </div>
 
+    
     <div class="part3 container">
         <div class="restaurants" id="result"></div>
     </div>

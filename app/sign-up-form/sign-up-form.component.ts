@@ -32,14 +32,14 @@ export class SignUpFormComponent implements OnInit {
     this.cookieService.set('username', this.model.signUpEmail); // Reference: https://itnext.io/angular-8-how-to-use-cookies-14ab3f2e93fc
     this.data_submitted = form;
     let params = JSON.stringify(form);
-    this.http.post<User>('http://localhost/cs4640/Project-Submission/php/sign-up.php', params)
+    this.http.post<User>('http://localhost/cs4640/Project%20current/php/sign-up.php', params) // CHANGE URL DEPENDING ON XAMPP SETUP
     .subscribe((data) => {
       console.log('Response ', data);
       this.responsedata = data;
-      window.location.href= "http://localhost/cs4640/Project-Submission/php/loggedIn.php";
+      window.location.href= "http://localhost/cs4640/Project%20current/php/login.php"; // CHANGE URL DEPENDING ON XAMPP SETUP
     }, (error) => {
       console.log('Error ', error);
-      window.location.href= "http://localhost/cs4640/Project-Submission/php/loggedIn.php";
+      window.location.href= "http://localhost/cs4640/Project%20current/php/login.php"; // CHANGE URL DEPENDING ON XAMPP SETUP
     })
   }
 

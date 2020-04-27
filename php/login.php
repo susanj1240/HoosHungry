@@ -152,6 +152,12 @@
 
             <!-- login form -->
             <?php 
+            if (count($_COOKIE) > 0) {
+                if (!empty($_COOKIE['username'])) {
+                    $_SESSION['username'] = $_COOKIE['username'];
+                    $_SESSION["loggedin"] = true;
+                }
+            }
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 echo'<div class="profile ml-auto p-2">
                 <p id="greeting">Hello, ';

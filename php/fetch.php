@@ -7,9 +7,9 @@ require("connect-db.php");
 global $db;
 
 $output = '';
-if(isset($_POST["query"]))
+if(isset($_GET["i"]))
 {
- $search = $_POST["query"];
+ $search = $_GET["i"];
  $query = "
   SELECT * FROM restaurants 
   WHERE name LIKE '%".$search."%'

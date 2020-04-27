@@ -171,11 +171,13 @@
         </div>
     </div>
 
+    <!-- Ajax for Extra credit -->
+    <script src="../js/search.js"></script>
 
     <div class="part2 container">
         <div class="form-group has-search">
             <span class="fa fa-search form-control-feedback"></span>
-            <input id="userInput" name="userInput" type="text" class="form-control" placeholder="Type in your restaurant">
+            <input onkeyup="search(this.value)" id="userInput" name="userInput" type="text" class="form-control" placeholder="Type in your restaurant">
 
         </div>
 
@@ -184,40 +186,6 @@
     <div class="part3 container">
         <div class="restaurants" id="result"></div>
     </div>
-
-<script>
-    //reference: https://www.webslesson.info/2016/03/ajax-live-data-search-using-jquery-php-mysql.html
-    $(document).ready(function(){
-
-    load_data();
-
-    function load_data(query)
-    {
-    $.ajax({
-    url:"../php/fetch.php",
-    method:"POST",
-    data:{query:query},
-    success:function(data)
-    {
-    $('#result').html(data);
-    }
-    });
-    }
-    $('#userInput').keyup(function(){
-        console.log("typiing...");
-    var search = $(this).val();
-    if(search != '')
-    {
-    load_data(search);
-    }
-    else
-    {
-    load_data();
-    }
-    });
-    });
-    
-</script>
 
 
 </body>

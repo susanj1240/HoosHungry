@@ -3,9 +3,9 @@
     //Connects with Xampp database
 
     $hostname = 'localhost';
-    $dbname = 'webPLproject'; // CHANGE THIS
-    $username = 'aaa'; // CHANGE THIS
-    $password = 'keylimepie24'; // CHANGE THIS
+    $dbname = ''; // CHANGE THIS
+    $username = ''; // CHANGE THIS
+    $password = ''; // CHANGE THIS
 
     $dsn = "mysql:host=$hostname;dbname=$dbname";
 

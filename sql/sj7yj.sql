@@ -119,10 +119,10 @@ CREATE TABLE `restaurants` (
 --
 
 INSERT INTO `restaurants` (`name`, `image`, `link`) VALUES
-('doma', '../img/Doma.jpeg', '../html/restaurant-page.html'),
-('milan', '../img/milan.jpg', '../html/restaurant-page.html'),
-('mod pizza', '../img/modpizza.gif', '../html/restaurant-page.html'),
-('roots', 'roots.png', '../html/restaurant-page.html');
+('doma', '../img/Doma.jpeg', '../php/restaurant-page.php'),
+('milan', '../img/milan.jpg', '../php/restaurant-page.php'),
+('mod pizza', '../img/modpizza.gif', '../php/restaurant-page.php'),
+('roots', 'roots.png', '../php/restaurant-page.php');
 
 -- --------------------------------------------------------
 

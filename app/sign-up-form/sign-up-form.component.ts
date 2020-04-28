@@ -1,3 +1,4 @@
+// Author: Emily Lin 
 import { Component, Inject, OnInit } from '@angular/core'; // Inject reference: https://ultimatecourses.com/blog/angular-dependency-injection#inject
 import { User } from '../user';
 

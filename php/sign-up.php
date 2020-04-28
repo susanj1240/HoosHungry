@@ -1,4 +1,5 @@
 <?php 
+    // Author: Emily Lin 
     session_start();
     // header('Access-Control-Allow-Origin: http://localhost:4200');
     header('Access-Control-Allow-Origin: *');
